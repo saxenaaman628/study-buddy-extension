@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Study Buddy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h2>Study Buddy</h2>
+
+    <!-- Tabs -->
+    <div id="tabs">
+        <button class="tab-button active" data-tab="summarize">Summarize</button>
+        <button class="tab-button" data-tab="translate">Translate</button>
+    </div>
+
+    <!-- Summarize Tab -->
+    <div id="summarizeTab" class="tab-content active">
+        <div id="summary-preview" class="preview-box"></div>
+        <div id="summary-result" class="result-box">Click "Summarize" to proceed.</div>
+        <button id="summarize-btn">Summarize</button>
+    </div>
+
+    <!-- Translate Tab -->
+    <div id="translateTab" class="tab-content">
+        <div id="translate-preview" class="preview-box"></div>
+
+        <div class="lang-selectors">
+            <label for="from-lang">From:</label>
+            <select id="from-lang">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+                <option value="de">German</option>
+            </select>
+
+            <label for="to-lang">To:</label>
+            <select id="to-lang">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+                <option value="de">German</option>
+            </select>
+        </div>
+
+        <div id="translate-result" class="result-box">Click "Translate" to proceed.</div>
+        <button id="translate-btn">Translate</button>
+    </div>
+
+    <script src="ai.js"></script>
+    <script src="popup.js"></script>
+</body>
+
+</html>
