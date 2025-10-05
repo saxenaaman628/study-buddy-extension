@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.getElementById("summary-preview").innerText = preview;
         document.getElementById("translate-preview").innerText = preview;
+        document.getElementById("proofread-preview").innerText = preview;
+        document.getElementById("rewriter-preview").innerText = preview;
     });
 
     // Summarize button
@@ -54,6 +56,43 @@ document.addEventListener("DOMContentLoaded", () => {
             } catch (err) {
                 console.error("Translate error:", err);
                 resultBox.innerText = "Error translating text.";
+            }
+        });
+    });
+
+    // Proofread button
+    document.getElementById("proofread-btn").addEventListener("click", async () => {
+        chrome.storage.local.get("selectedText", async (data) => {
+            const text = data.selectedText || "No text selected.";
+            const resultBox = document.getElementById("proofread-result");
+            resultBox.innerText = "Proofreading...";
+
+            try {
+                const output = await window.proofreadWithAI(text);
+                resultBox.innerText = output;
+            } catch (err) {
+                console.error("Proofread error:", err);
+                resultBox.innerText = "Error proofreading text.";
+            }
+        });
+    });
+
+    // Rewriter button
+    document.getElementById("rewriter-btn").addEventListener("click", async () => {
+        chrome.storage.local.get("selectedText", async (data) => {
+            const text = data.selectedText || "No text selected.";
+            const resultBox = document.getElementById("rewriter-result");
+
+            const tone = document.getElementById("rewrite-tone").value;
+            const format = document.getElementById("rewrite-format").value;
+
+            resultBox.innerText = "Rewriting...";
+            try {
+                const output = await window.rewriteWithAI(text, tone, format);
+                resultBox.innerText = output;
+            } catch (err) {
+                console.error("Rewrite error:", err);
+                resultBox.innerText = "Error rewriting text.";
             }
         });
     });

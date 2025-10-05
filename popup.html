@@ -13,6 +13,8 @@
     <div id="tabs">
         <button class="tab-button active" data-tab="summarize">Summarize</button>
         <button class="tab-button" data-tab="translate">Translate</button>
+        <button class="tab-button" data-tab="proofread">Proofread</button>
+        <button class="tab-button" data-tab="rewriter">Rewriter</button>
     </div>
 
     <!-- Summarize Tab -->
@@ -48,6 +50,36 @@
 
         <div id="translate-result" class="result-box">Click "Translate" to proceed.</div>
         <button id="translate-btn">Translate</button>
+    </div>
+
+    <!-- Proofread Tab -->
+    <div id="proofreadTab" class="tab-content">
+        <div id="proofread-preview" class="preview-box"></div>
+        <div id="proofread-result" class="result-box">Click "Proofread" to proceed.</div>
+        <button id="proofread-btn">Proofread</button>
+    </div>
+
+    <div id="rewriterTab" class="tab-content">
+        <div id="rewriter-preview" class="preview-box"></div>
+
+        <div class="rewriter-selectors">
+            <label for="rewrite-tone">Tone:</label>
+            <select id="rewrite-tone">
+                <option value="as-is" selected>As-is</option>
+                <option value="more-formal">More Formal</option>
+                <option value="more-casual">More Casual</option>
+            </select>
+
+            <label for="rewrite-format">Output Format:</label>
+            <select id="rewrite-format">
+                <option value="as-is" selected>As-is</option>
+                <option value="markdown">Markdown</option>
+                <option value="plain-text">Plain Text</option>
+            </select>
+        </div>
+
+        <div id="rewriter-result" class="result-box">Click "Rewrite" to proceed.</div>
+        <button id="rewriter-btn">Rewrite</button>
     </div>
 
     <script src="ai.js"></script>

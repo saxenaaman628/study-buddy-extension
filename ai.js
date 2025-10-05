@@ -13,11 +13,11 @@ async function summarizeWithAI(text) {
             length: 'medium',
             expectedInputLanguages: ["en-US"],
             outputLanguage: "en",
-            monitor(m) {
-                m.addEventListener('downloadprogress', (e) => {
-                    console.log(`Downloaded ${(e.loaded * 100).toFixed(2)}%`);
-                });
-            }
+            // monitor(m) {
+            //     m.addEventListener('downloadprogress', (e) => {
+            //         console.log(`Downloaded ${(e.loaded * 100).toFixed(2)}%`);
+            //     });
+            // }
         };
 
         // Check availability
@@ -68,6 +68,64 @@ async function translateWithAI(text, fromLang = "en", targetLang = "en") {
         return "Failed to translate text.";
     }
 }
+async function proofreadWithAI(text) {
+    if (!window.ai || !ai.proofreader) {
+        console.error("Proofreader API not available in this version of Chrome.");
+        return "Proofreader API not available in this version of Chrome."
+    }
 
+    try {
+        const session = await ai.proofreader.create();
+        const result = await session.proofread(text);
+
+        if (result && result.corrections && result.corrections.length > 0) {
+            return result.corrections.map(c => c.correctedText).join("\n");
+        } else {
+            return "No issues found.";
+        }
+    } catch (err) {
+        console.error("Proofreader error:", err);
+        return "Error during proofreading.";
+    }
+};
+
+async function rewriteWithAI(text, tone = "as-is", outputFormat = "as-is") {
+    if (!window.Rewriter) {
+        console.error("Rewriter API not available in this Chrome version.");
+        return "Rewriter API not available.";
+    }
+    try {
+        const options = {
+            type: "paraphrase",
+            style: tone,        // use selected tone
+            format: outputFormat, // use selected format
+            // length:"short",
+            monitor(m) {
+                m.addEventListener('downloadprogress', (e) => {
+                    console.log(`Downloaded ${(e.loaded * 100).toFixed(2)}%`);
+                });
+            }
+        };
+
+        const availability = await Rewriter.availability();
+        if (availability === "unavailable") {
+            return "Rewriter API unavailable.";
+        }
+
+        if (navigator.userActivation.isActive) {
+            const rewriter = await Rewriter.create(options);
+            const result = await rewriter.rewrite(text);
+            return result?.output || JSON.stringify(result);
+        } else {
+            return "Rewriter requires user interaction.";
+        }
+    } catch (err) {
+        console.error("Rewriter API error:", err);
+        return "Failed to rewrite text.";
+    }
+}
+
+window.rewriteWithAI = rewriteWithAI;
 window.translateWithAI = translateWithAI;
 window.summarizeWithAI = summarizeWithAI;
+window.proofreadWithAI = proofreadWithAI;

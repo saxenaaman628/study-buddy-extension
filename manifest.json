@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Study Buddy AI",
+  "name": "Study Buddy Built-In AI",
   "description": "Summarize, Rewrite, Proofread & Translate text via built-in AI",
   "version": "1.0",
   "permissions": [
@@ -19,6 +19,10 @@
   "icons": {
     "128": "icons/icon128.png"
   },
+  "trial_tokens": [
+    "ApPvAphZ60it7F7JiZzWhmwgMXUDMwZp4SlvsftpA9Zre94TLqksAOeRIBL92boyGYcWhf5gmYUMkviUoQVWRwQAAABxeyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8vaWZtbmplYWhjbm5kb3BlYWVmbW1kY2dkcG5vZGhubm4iLCJmZWF0dXJlIjoiQUlQcm9vZnJlYWRlckFQSSIsImV4cGlyeSI6MTc3OTE0ODgwMH0=",
+    "AoSEeCL/DAKDfHB5skXN5vKahEW0pootejh9/ds3AbsdzeP9ZahtVzW/0bpPzt9Vkh3K6Yd9Lza8p2bGdU6tzgEAAABueyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8vaWZtbmplYWhjbm5kb3BlYWVmbW1kY2dkcG5vZGhubm4iLCJmZWF0dXJlIjoiQUlSZXdyaXRlckFQSSIsImV4cGlyeSI6MTc2OTQ3MjAwMH0="
+  ],
   "content_scripts": [
     {
       "matches": [
