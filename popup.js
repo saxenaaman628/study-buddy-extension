@@ -2,34 +2,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const tabButtons = document.querySelectorAll(".tab-button");
     const tabContents = document.querySelectorAll(".tab-content");
 
+    // Function to update preview for a tab
+    const updatePreview = (tabId) => {
+        chrome.storage.local.get("selectedText", (data) => {
+            const text = data.selectedText || "Select some text on a webpage first.";
+            const previewBox = document.getElementById(`${tabId}-preview`);
+            if (previewBox) {
+                previewBox.innerText = text.length > 80 ? text.slice(0, 80) + "..." : text;
+            }
+        });
+    };
+
     // Handle tab switching
     tabButtons.forEach(button => {
         button.addEventListener("click", () => {
+            const tabId = button.dataset.tab;
+
             tabButtons.forEach(b => b.classList.remove("active"));
             tabContents.forEach(c => c.classList.remove("active"));
 
             button.classList.add("active");
-            document.getElementById(button.dataset.tab + "Tab").classList.add("active");
+            document.getElementById(`${tabId}Tab`).classList.add("active");
+
+            updatePreview(tabId);
         });
     });
 
-    // Load selected text
-    chrome.storage.local.get("selectedText", (data) => {
-        const text = data.selectedText || "Select some text on a webpage first.";
-        const preview = text.length > 80 ? text.slice(0, 80) + "..." : text;
-
-        document.getElementById("summary-preview").innerText = preview;
-        document.getElementById("translate-preview").innerText = preview;
-        document.getElementById("proofread-preview").innerText = preview;
-        document.getElementById("rewriter-preview").innerText = preview;
-    });
+    // Initialize all previews
+    ["summary", "translate", "proofread", "rewriter"].forEach(updatePreview);
 
     // Summarize button
     document.getElementById("summarize-btn").addEventListener("click", async () => {
         chrome.storage.local.get("selectedText", async (data) => {
             const text = data.selectedText || "No text selected.";
             const resultBox = document.getElementById("summary-result");
-
             resultBox.innerText = "Summarizing...";
             try {
                 const output = await window.summarizeWithAI(text);
@@ -49,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const fromLang = document.getElementById("from-lang").value;
             const toLang = document.getElementById("to-lang").value;
+
             resultBox.innerText = "Translating...";
             try {
                 const output = await window.translateWithAI(text, fromLang, toLang);
@@ -66,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const text = data.selectedText || "No text selected.";
             const resultBox = document.getElementById("proofread-result");
             resultBox.innerText = "Proofreading...";
-
             try {
                 const output = await window.proofreadWithAI(text);
                 resultBox.innerText = output;
