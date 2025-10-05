@@ -1,17 +1,12 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 12px;
-    width: 340px;
-    background: #f9f9f9;
+    width: 350px;
+    background: #f5f6fa;
     color: #333;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
+/* Tabs */
 #tabs {
     display: flex;
     gap: 6px;
@@ -20,23 +15,108 @@ h2 {
 
 .tab-button {
     flex: 1;
-    padding: 8px 0;
+    padding: 8px 12px;
     border: none;
+    border-radius: 6px;
     background: #e0e0e0;
     cursor: pointer;
-    border-radius: 6px;
     font-weight: 500;
-    transition: all 0.2s ease;
+    transition: background 0.2s, box-shadow 0.2s;
 }
 
 .tab-button:hover {
-    background: #d0d0d0;
+    background: #d4d4d4;
 }
 
 .tab-button.active {
     background: #4285f4;
     color: white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Tab content card */
+.tab-card {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Preview & Result */
+.preview-box {
+    font-size: 13px;
+    color: #555;
+    background: #f1f3f4;
+    padding: 10px;
+    border-radius: 8px;
+    position: relative;
+    max-height: 70px;
+    overflow: hidden;
+}
+
+.preview-box::before {
+    /* content: "Preview"; */
+    font-weight: 500;
+    font-size: 12px;
+    color: #888;
+    position: absolute;
+    top: 4px;
+    left: 8px;
+}
+
+.result-box {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    min-height: 70px;
+    overflow-y: auto;
+    font-size: 13px;
+}
+
+/* Input groups */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input-group label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #555;
+}
+
+.input-group select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: border 0.2s ease;
+}
+
+.input-group select:hover {
+    border-color: #4285f4;
+}
+
+/* Buttons */
+.action-btn {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    background: #4285f4;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.action-btn:hover {
+    background: #3367d6;
+    transform: translateY(-1px);
 }
 
 .tab-content {
@@ -45,75 +125,4 @@ h2 {
 
 .tab-content.active {
     display: block;
-    animation: fadeIn 0.2s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-4px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.preview-box {
-    font-size: 13px;
-    color: #555;
-    background: #f1f3f4;
-    padding: 8px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    max-height: 60px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.result-box {
-    margin-top: 8px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    min-height: 60px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-button {
-    margin-top: 10px;
-    padding: 8px 16px;
-    border: none;
-    background: #4285f4;
-    color: white;
-    cursor: pointer;
-    border-radius: 6px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-button:hover {
-    background: #3367d6;
-}
-
-.lang-selectors,
-.rewriter-selectors {
-    margin: 10px 0;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-select {
-    padding: 5px 8px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    transition: border 0.2s ease;
-}
-
-select:hover {
-    border-color: #4285f4;
 }

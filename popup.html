@@ -19,67 +19,80 @@
 
     <!-- Summarize Tab -->
     <div id="summarizeTab" class="tab-content active">
-        <div id="summary-preview" class="preview-box"></div>
-        <div id="summary-result" class="result-box">Click "Summarize" to proceed.</div>
-        <button id="summarize-btn">Summarize</button>
+        <div class="tab-card">
+            <div id="summary-preview" class="preview-box"></div>
+            <div id="summary-result" class="result-box">Click "Summarize" to proceed.</div>
+            <button id="summarize-btn" class="action-btn">Summarize</button>
+        </div>
     </div>
 
     <!-- Translate Tab -->
     <div id="translateTab" class="tab-content">
-        <div id="translate-preview" class="preview-box"></div>
+        <div class="tab-card">
+            <div id="translate-preview" class="preview-box"></div>
 
-        <div class="lang-selectors">
-            <label for="from-lang">From:</label>
-            <select id="from-lang">
-                <option value="en">English</option>
-                <option value="hi">Hindi</option>
-                <option value="fr">French</option>
-                <option value="es">Spanish</option>
-                <option value="de">German</option>
-            </select>
+            <div class="input-group">
+                <label for="from-lang">From</label>
+                <select id="from-lang">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="fr">French</option>
+                    <option value="es">Spanish</option>
+                    <option value="de">German</option>
+                </select>
+            </div>
 
-            <label for="to-lang">To:</label>
-            <select id="to-lang">
-                <option value="en">English</option>
-                <option value="hi">Hindi</option>
-                <option value="fr">French</option>
-                <option value="es">Spanish</option>
-                <option value="de">German</option>
-            </select>
+            <div class="input-group">
+                <label for="to-lang">To</label>
+                <select id="to-lang">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="fr">French</option>
+                    <option value="es">Spanish</option>
+                    <option value="de">German</option>
+                </select>
+            </div>
+
+            <div id="translate-result" class="result-box">Click "Translate" to proceed.</div>
+            <button id="translate-btn" class="action-btn">Translate</button>
         </div>
-
-        <div id="translate-result" class="result-box">Click "Translate" to proceed.</div>
-        <button id="translate-btn">Translate</button>
     </div>
 
     <!-- Proofread Tab -->
     <div id="proofreadTab" class="tab-content">
-        <div id="proofread-preview" class="preview-box"></div>
-        <div id="proofread-result" class="result-box">Click "Proofread" to proceed.</div>
-        <button id="proofread-btn">Proofread</button>
+        <div class="tab-card">
+            <div id="proofread-preview" class="preview-box"></div>
+            <div id="proofread-result" class="result-box">Click "Proofread" to proceed.</div>
+            <button id="proofread-btn" class="action-btn">Proofread</button>
+        </div>
     </div>
 
+    <!-- Rewriter Tab -->
     <div id="rewriterTab" class="tab-content">
-        <div id="rewriter-preview" class="preview-box"></div>
+        <div class="tab-card">
+            <div id="rewriter-preview" class="preview-box"></div>
 
-        <div class="rewriter-selectors">
-            <label for="rewrite-tone">Tone:</label>
-            <select id="rewrite-tone">
-                <option value="as-is" selected>As-is</option>
-                <option value="more-formal">More Formal</option>
-                <option value="more-casual">More Casual</option>
-            </select>
+            <div class="input-group">
+                <label for="rewrite-tone">Tone</label>
+                <select id="rewrite-tone">
+                    <option value="as-is" selected>As-is</option>
+                    <option value="more-formal">More Formal</option>
+                    <option value="more-casual">More Casual</option>
+                </select>
+            </div>
 
-            <label for="rewrite-format">Output:</label>
-            <select id="rewrite-format">
-                <option value="as-is" selected>As-is</option>
-                <option value="markdown">Markdown</option>
-                <option value="plain-text">Plain Text</option>
-            </select>
+            <div class="input-group">
+                <label for="rewrite-format">Output Format</label>
+                <select id="rewrite-format">
+                    <option value="as-is" selected>As-is</option>
+                    <option value="markdown">Markdown</option>
+                    <option value="plain-text">Plain Text</option>
+                </select>
+            </div>
+
+            <div id="rewriter-result" class="result-box">Click "Rewrite" to proceed.</div>
+            <button id="rewriter-btn" class="action-btn">Rewrite</button>
         </div>
-
-        <div id="rewriter-result" class="result-box">Click "Rewrite" to proceed.</div>
-        <button id="rewriter-btn">Rewrite</button>
     </div>
 
     <script src="ai.js"></script>
