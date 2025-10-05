@@ -8,9 +8,6 @@ async function summarizeWithAI(text) {
         // Options based on official docs
         const options = {
             sharedContext: "Study Buddy Extension",
-            // sharedContext: 'Study Buddy Extension which summarize the text and make it easy to learn from',
-            // sharedContext: "Study Buddy Extension that summarizes text into clear, concise, and easy-to-understand points, highlighting key ideas and making it simple to understand and remember",
-            // sharedContext: "Study Buddy Extension helps students study faster and understand better. It turns long text into short, simple points, highlights the most important ideas, and explains everything in easy English.",
             type: 'key-points',
             format: 'markdown',
             length: 'medium',
@@ -55,7 +52,7 @@ async function translateWithAI(text, fromLang = "en", targetLang = "en") {
 
     try {
         const translator = await window.Translator.create({
-            sourceLanguage: fromLangs,
+            sourceLanguage: fromLang,
             targetLanguage: targetLang,
             monitor(m) {
                 m.addEventListener('downloadprogress', (e) => {
@@ -65,7 +62,6 @@ async function translateWithAI(text, fromLang = "en", targetLang = "en") {
         });
 
         const result = await translator.translate(text);
-        console.log("---result---", result)
         return result || "Translation failed.";
     } catch (err) {
         console.error("Translator API error:", err);
@@ -73,11 +69,5 @@ async function translateWithAI(text, fromLang = "en", targetLang = "en") {
     }
 }
 
-// Expose globally
 window.translateWithAI = translateWithAI;
-
-
-// Expose globally
 window.summarizeWithAI = summarizeWithAI;
-// window.proofreadWithAI = proofreadWithAI;
-window.translateWithAI = translateWithAI;

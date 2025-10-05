@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const fromLang = document.getElementById("from-lang").value;
             const toLang = document.getElementById("to-lang").value;
-            console.log(fromLang, "------", toLang)
             resultBox.innerText = "Translating...";
             try {
                 const output = await window.translateWithAI(text, fromLang, toLang);
